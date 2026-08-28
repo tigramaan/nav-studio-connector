@@ -18,6 +18,7 @@ The GUI and JSON CLI call the same application services. Agent mode fails closed
 - Ubuntu release: `.deb` is primary; AppImage is an optional diagnostic artifact. Trust installation invokes only the fixed `pkexec` helper plan. The package workflow installs the `.deb` on an ephemeral Ubuntu host and verifies GUI startup plus disposable-CA installation/removal.
 - `artifacts/` is a local, gitignored handoff directory. GitHub Actions packages are the reproducible public artifacts.
 - Public project information is served from `https://tigramaan.github.io/nav-studio-connector/`; the versioned privacy disclosure is available at `/privacy/`, and downloads remain on GitHub Releases.
+- Release authorization and SignPath Foundation responsibilities are published at `https://tigramaan.github.io/nav-studio-connector/code-signing/`.
 
 ## Outstanding external release input
 

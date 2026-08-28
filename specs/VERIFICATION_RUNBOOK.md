@@ -62,6 +62,7 @@ Published project website:
 npm run validate:site
 npm run qa:visual -- "https://tigramaan.github.io/nav-studio-connector/" "artifacts/site-qa-final"
 npm run qa:visual -- "https://tigramaan.github.io/nav-studio-connector/privacy/" "artifacts/site-qa-privacy-final"
+npm run qa:visual -- "https://tigramaan.github.io/nav-studio-connector/code-signing/" "artifacts/site-qa-policy-final"
 ```
 
 ## Executed evidence — 2026-08-28
@@ -84,6 +85,7 @@ npm run qa:visual -- "https://tigramaan.github.io/nav-studio-connector/privacy/"
 | V-012 signed identity receipt | PASS | Valid, mismatched, expired, unknown/revoked-policy and pinned-product-root tests pass. A public test vector was signed by the dedicated external Ed25519 key and verified against `config/identity-trust-roots.json`; source scan found no private key. |
 | V-013 public website/privacy | PASS | GitHub Pages deployment `33168784714` published the static homepage and privacy policy. `validate-site.mjs` verified stable public links and found 0 runtime scripts, analytics or forms. |
 | V-014 production website layout | PASS | Both published pages passed Edge at 320×568, 390×844, 768×1024, 1024×768, 1440×900, 1920×1080, 2560×1440, 3840×2160 and 1440×1600. Horizontal overflow, undersized targets, console errors and failed requests: 0. Representative mobile, tablet, desktop, 4K and full privacy screenshots were visually inspected. |
+| V-015 code signing policy | PASS | `validate-site.mjs` verified the homepage policy link, provider attribution, named roles, manual approval and privacy statement. The published policy passed the complete viewport matrix and visual review; final homepage deployment `33169197537` also passed after the policy-link target was enlarged. |
 
 ## Expected artifacts
 
@@ -99,6 +101,7 @@ npm run qa:visual -- "https://tigramaan.github.io/nav-studio-connector/privacy/"
 - Local final Windows SHA-256: executable `21671BF58C7E22EE6A7116ECBF0F3D708F8AFF16C133EC450D3ED277EF37CA21`; NSIS installer `A961435EAA4126A5FBAD8FD95D31F0E942CA588ED80D59E72A664F29C6AF6377`.
 - Ubuntu VM CLI SHA-256: `FE2373B06971AC0BF026DD5E4DE1A5496D0B544068B36EBC0ED21C31121464C4`.
 - GitHub Pages run `33168784714`: production deployment completed successfully at commit `0d7bccd`; homepage `https://tigramaan.github.io/nav-studio-connector/`, privacy policy `https://tigramaan.github.io/nav-studio-connector/privacy/`.
+- GitHub Pages run `33169197537`: final homepage/signing-policy deployment completed successfully at commit `c9e2a66`; signing policy `https://tigramaan.github.io/nav-studio-connector/code-signing/`.
 
 ## Acceptance checklist
 
