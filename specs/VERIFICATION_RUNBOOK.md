@@ -56,6 +56,14 @@ Responsive UI (run `npm run dev -- --port 1420 --strictPort` in another terminal
 npm run qa:visual -- "http://127.0.0.1:1420/?demo=1" "artifacts/ui-qa-playwright"
 ```
 
+Published project website:
+
+```powershell
+npm run validate:site
+npm run qa:visual -- "https://tigramaan.github.io/nav-studio-connector/" "artifacts/site-qa-final"
+npm run qa:visual -- "https://tigramaan.github.io/nav-studio-connector/privacy/" "artifacts/site-qa-privacy-final"
+```
+
 ## Executed evidence — 2026-08-28
 
 | Check | Result | Evidence |
@@ -74,6 +82,8 @@ npm run qa:visual -- "http://127.0.0.1:1420/?demo=1" "artifacts/ui-qa-playwright
 | V-010 MIT source license | PASS | `validate-license.mjs` verified the canonical MIT grant and `tigramaan` attribution; `LICENSE` is tracked at repository root. |
 | V-011 Windows release signing gate | PASS (pipeline/HIL) | Disposable code-signing HIL signed and fresh-process verified the app and NSIS copies, rejected both when timestamp was required, and removed the test certificate. The tag workflow requires a real PFX, SHA-256 Authenticode and successful timestamp verification. |
 | V-012 signed identity receipt | PASS | Valid, mismatched, expired, unknown/revoked-policy and pinned-product-root tests pass. A public test vector was signed by the dedicated external Ed25519 key and verified against `config/identity-trust-roots.json`; source scan found no private key. |
+| V-013 public website/privacy | PASS | GitHub Pages deployment `33168784714` published the static homepage and privacy policy. `validate-site.mjs` verified stable public links and found 0 runtime scripts, analytics or forms. |
+| V-014 production website layout | PASS | Both published pages passed Edge at 320×568, 390×844, 768×1024, 1024×768, 1440×900, 1920×1080, 2560×1440, 3840×2160 and 1440×1600. Horizontal overflow, undersized targets, console errors and failed requests: 0. Representative mobile, tablet, desktop, 4K and full privacy screenshots were visually inspected. |
 
 ## Expected artifacts
 
@@ -88,6 +98,7 @@ npm run qa:visual -- "http://127.0.0.1:1420/?demo=1" "artifacts/ui-qa-playwright
 - Uploaded artifacts: `nav-studio-connector-windows-x64` (1,422,047 bytes) and `nav-studio-connector-ubuntu-x64` (83,228,246 bytes).
 - Local final Windows SHA-256: executable `21671BF58C7E22EE6A7116ECBF0F3D708F8AFF16C133EC450D3ED277EF37CA21`; NSIS installer `A961435EAA4126A5FBAD8FD95D31F0E942CA588ED80D59E72A664F29C6AF6377`.
 - Ubuntu VM CLI SHA-256: `FE2373B06971AC0BF026DD5E4DE1A5496D0B544068B36EBC0ED21C31121464C4`.
+- GitHub Pages run `33168784714`: production deployment completed successfully at commit `0d7bccd`; homepage `https://tigramaan.github.io/nav-studio-connector/`, privacy policy `https://tigramaan.github.io/nav-studio-connector/privacy/`.
 
 ## Acceptance checklist
 
@@ -103,6 +114,7 @@ npm run qa:visual -- "http://127.0.0.1:1420/?demo=1" "artifacts/ui-qa-playwright
 - [x] Source secret scan passes.
 - [x] Required responsive viewport screenshots pass.
 - [x] Ubuntu system trust mutation, strict HTTPS, cleanup and `.deb`/GUI/AppImage smoke pass on an ephemeral privileged host.
+- [x] Public website and privacy policy are deployed and pass the complete production viewport matrix.
 - [ ] Windows release is Authenticode-signed with an organization-owned key.
 
 ## Known limitations

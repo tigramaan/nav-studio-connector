@@ -56,7 +56,7 @@
 - [x] T037 Complete isolated Ubuntu `.deb` install/GUI and disposable-CA trust-store HIL
 - [x] T038 Implement the static project homepage and privacy policy in `site/`
 - [x] T039 Add the least-privilege GitHub Pages deployment workflow
-- [ ] T040 Verify the published website across the required production viewport matrix
+- [x] T040 Verify the published website across the required production viewport matrix
 
 ## Dependencies
 

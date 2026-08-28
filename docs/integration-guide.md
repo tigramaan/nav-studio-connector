@@ -12,4 +12,6 @@ Recommended production evolution:
 
 Do not put session tokens, passwords, SSH keys or full serial payloads in DNS-SD TXT records or QR codes.
 
+The public desktop-connector landing page is `https://tigramaan.github.io/nav-studio-connector/`. Link users to GitHub Releases for packages and to `https://tigramaan.github.io/nav-studio-connector/privacy/` for the privacy disclosure; do not mirror unsigned binaries on the static site.
+
 Generate receipts only in a controlled robot provisioning pipeline with `tools/sign-identity-receipt.py`. The Ed25519 private key path must be outside the checkout; production custody should use a restricted vault/HSM-backed signing service. Rotation publishes a new public-key entry before issuance begins, then revokes the previous key only after its bounded receipts expire.
