@@ -57,6 +57,7 @@
 - [x] T038 Implement the static project homepage and privacy policy in `site/`
 - [x] T039 Add the least-privilege GitHub Pages deployment workflow
 - [x] T040 Verify the published website across the required production viewport matrix
+- [x] T041 Publish and contract-check the SignPath-compatible code signing policy
 
 ## Dependencies
 

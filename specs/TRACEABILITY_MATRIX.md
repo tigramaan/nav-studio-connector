@@ -16,3 +16,4 @@
 | REQ-020 | T-011 | signed, expired, mismatched, unknown and revoked receipt tests; V-012 |
 | REQ-021, REQ-022 | T-012 | static link/privacy validator and GitHub Pages deployment; V-013 |
 | REQ-023 | T-012 | production viewport screenshots, overflow, target-size, console and failed-request audit; V-014 |
+| REQ-024 | T-012 | signing-policy content validator and production page audit; V-015 |

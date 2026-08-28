@@ -103,6 +103,10 @@ footer { border-top: 1px solid var(--line); background: var(--white); }
 .legal-document h2 { max-width: none; margin: 3rem 0 .75rem; font-size: clamp(1.35rem,3vw,1.8rem); line-height: 1.2; letter-spacing: -.025em; }
 .legal-document p:not(.eyebrow):not(.lead):not(.legal-date) { color: #44564f; }
 .legal-document a { display: inline-flex; min-height: 2.75rem; align-items: center; color: var(--green-dark); font-weight: 700; }
+.policy-roles { margin: 1.5rem 0; }
+.policy-roles div { padding: 1.25rem 0; border-bottom: 1px solid var(--line); }
+.policy-roles dt { font-weight: 800; }
+.policy-roles dd { margin: .35rem 0 0; color: #44564f; }
 
 :focus-visible { outline: 3px solid #ffb62e; outline-offset: 3px; }
 @media (max-width: 64rem) {

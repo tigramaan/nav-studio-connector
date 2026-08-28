@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Code signing policy for UMEC Nav Studio Connector.">
+  <meta name="theme-color" content="#071612">
+  <link rel="canonical" href="https://tigramaan.github.io/nav-studio-connector/code-signing/">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../styles.css">
+  <title>Code Signing Policy · UMEC Nav Studio Connector</title>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="../" aria-label="UMEC Nav Studio Connector home">
+        <span class="brand-mark" aria-hidden="true">U</span>
+        <span class="brand-text">UMEC Connector</span>
+      </a>
+      <nav aria-label="Primary navigation"><a href="../">Home</a><a href="../privacy/">Privacy</a><a href="https://github.com/tigramaan/nav-studio-connector">GitHub</a></nav>
+    </div>
+  </header>
+  <main id="main" class="legal-main">
+    <article class="container legal-document">
+      <p class="eyebrow">Release governance</p>
+      <h1>Code signing policy.</h1>
+      <p class="legal-date">Last updated: August 28, 2026</p>
+      <p class="lead">This policy defines who may change, review, approve, build, and sign releases of UMEC Nav Studio Connector.</p>
+
+      <h2>Signing provider</h2>
+      <p>The project is applying to the SignPath Foundation open-source program. Once accepted, signed releases will carry the required attribution: “Free code signing provided by <a href="https://about.signpath.io/">SignPath.io</a>, certificate by <a href="https://signpath.org/">SignPath Foundation</a>”. Until onboarding is complete, release artifacts are explicitly identified as unsigned and must not be represented as SignPath-signed.</p>
+
+      <h2>Team roles</h2>
+      <dl class="policy-roles">
+        <div><dt>Committer and reviewer</dt><dd><a href="https://github.com/tigramaan">tigramaan</a> maintains the repository and reviews changes from external contributors before merge.</dd></div>
+        <div><dt>Signing approver</dt><dd><a href="https://github.com/tigramaan">tigramaan</a> verifies the release source, public build result, artifact identity, version, and security gates before manually approving a signing request.</dd></div>
+      </dl>
+      <p>All members with source-repository or SignPath access must use multi-factor authentication. A contributor may author a pull request, but cannot bypass required review or release approval.</p>
+
+      <h2>Trusted build and provenance</h2>
+      <p>Release binaries are built from the public repository by GitHub Actions. The trusted workflow checks out an exact revision, builds the Windows executable and NSIS installer, verifies tests and security gates, submits only those artifacts for signing, verifies Authenticode and timestamp results, and then publishes the approved files. Private signing keys are never stored in this repository or exposed to the build job.</p>
+
+      <h2>Approval rules</h2>
+      <p>Every production release requires manual approval. The approver must confirm that the revision belongs to this project, public CI is successful, product name and version metadata match the release, the artifact contains no proprietary project component, and SHA-256 evidence is recorded. A failed, missing, mismatched, untrusted, or untimestamped signature blocks publication.</p>
+
+      <h2>Scope</h2>
+      <p>Only binaries built from source maintained in this repository may be signed under this policy. Unsigned upstream open-source runtime components may be packaged where permitted, but are not submitted as project-owned binaries. The signing service must not be used for unrelated software, forks not governed by this team, or privately supplied executables.</p>
+
+      <h2>Privacy</h2>
+      <p>This program will not transfer any information to other networked systems unless specifically requested by the user or the person installing or operating it. Detailed local processing, storage, website hosting, and third-party destination behavior is documented in the <a href="../privacy/">privacy policy</a>.</p>
+
+      <h2>Installation and removal</h2>
+      <p>The Windows package provides a standard per-user installer and registered uninstaller. The connector announces certificate-store changes before execution and removes only trust records identified as connector-owned. Platform commands and acceptance procedures are documented in the public repository.</p>
+
+      <h2>Policy changes</h2>
+      <p>Changes to release signing, trusted-build configuration, artifact scope, roles, or security gates must be reviewed like source changes and published before they govern a signing request.</p>
+    </article>
+  </main>
+  <footer>
+    <div class="container footer-inner">
+      <div><strong>UMEC Nav Studio Connector</strong><p>Secure local discovery and trust bootstrap.</p></div>
+      <nav aria-label="Footer navigation"><a href="../">Home</a><a href="../privacy/">Privacy</a><a href="https://github.com/tigramaan/nav-studio-connector">Source</a><a href="https://github.com/tigramaan/nav-studio-connector/blob/001-desktop-connector/LICENSE">MIT License</a></nav>
+    </div>
+  </footer>
+</body>
+</html>

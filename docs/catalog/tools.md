@@ -14,6 +14,6 @@
 | `test-windows-signing-hil.ps1` | Disposable self-signed Authenticode pipeline HIL without modifying release artifacts | final EXE/NSIS → temporary signed copies | always removes test certificates and copies | REQ-019 |
 | `test-windows-package-hil.ps1` | Silent current-user NSIS install, installed CLI/GUI launch and uninstall smoke | NSIS package → JSON evidence | refuses a pre-existing installation and always invokes the registered uninstaller | REQ-012, 013 |
 | `test-ubuntu-package-hil.sh` | Isolated `.deb`/AppImage, GUI and disposable system-CA lifecycle HIL | packages → JSON evidence | root plus container/ephemeral-host guard; cleanup trap | REQ-008, 009, 012, 015 |
-| `validate-site.mjs` | Verify public links, privacy claims and absence of analytics, forms, scripts and external runtime assets | `site/` → JSON result | non-zero on a missing contract or forbidden element | REQ-021, 022 |
+| `validate-site.mjs` | Verify public links, privacy/signing-policy claims and absence of analytics, forms, scripts and external runtime assets | `site/` → JSON result | non-zero on a missing contract or forbidden element | REQ-021, 022, 024 |
 | `pages.yml` | Publish the immutable static `site/` artifact with least-privilege GitHub Pages permissions | feature branch → public website | deployment job fails closed | REQ-021, 022 |
 | `visual-qa.mjs` (website target) | Production website viewport, overflow, target-size, console and network audit | public URL/output directory → JSON and PNGs | non-zero on any layout or runtime failure | REQ-023 |

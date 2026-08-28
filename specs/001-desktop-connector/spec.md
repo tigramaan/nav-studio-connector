@@ -50,6 +50,7 @@ A user can diagnose mDNS, reachability, TLS identity and certificate-store state
 - **REQ-021**: The project MUST publish a GitHub Pages homepage with stable links to source, releases, the MIT License and the privacy policy.
 - **REQ-022**: The public privacy policy MUST accurately describe local application processing and storage; the project website MUST use no analytics, cookies, advertising, forms or external runtime assets.
 - **REQ-023**: The project website MUST remain readable without horizontal overflow on mobile, tablet, desktop, wide, 4K and tall viewports; interactive targets MUST be at least 44 pixels high and wide when rendered.
+- **REQ-024**: The project homepage MUST link a public code signing policy that identifies the signing provider, team roles, privacy statement, trusted build provenance, artifact scope and manual release approval rule.
 
 ## Security boundary
 

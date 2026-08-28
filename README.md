@@ -2,7 +2,7 @@
 
 Desktop companion for discovering a local UMEC Nav Studio, verifying its TLS identity, installing an explicitly approved certificate and opening Studio in the browser.
 
-Project website: [tigramaan.github.io/nav-studio-connector](https://tigramaan.github.io/nav-studio-connector/). Privacy policy: [PRIVACY.md](PRIVACY.md).
+Project website: [tigramaan.github.io/nav-studio-connector](https://tigramaan.github.io/nav-studio-connector/). Privacy policy: [PRIVACY.md](PRIVACY.md). [Code signing policy](https://tigramaan.github.io/nav-studio-connector/code-signing/).
 
 Supported targets:
 

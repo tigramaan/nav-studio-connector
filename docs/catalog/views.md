@@ -9,3 +9,4 @@
 | Diagnostics | Copy sanitized checks | optional URL | per-check codes | REQ-014, 016 |
 | Public project homepage | Explain the connector and route visitors to source, releases, license and privacy | static GitHub Pages navigation | unavailable host or broken link | REQ-021, 023; V-013, V-014 |
 | Public privacy policy | Disclose local processing, storage, collection and hosting behavior | static document | stale or inaccurate disclosure | REQ-022; V-013 |
+| Code signing policy | Publish provider attribution, team roles, trusted build, approval, scope and privacy rules | static policy linked from homepage | missing role, stale policy or unsupported signing claim | REQ-024; V-015 |
