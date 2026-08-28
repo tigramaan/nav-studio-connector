@@ -87,6 +87,7 @@ h1 span { color: var(--green); }
 .proof-section { padding-top: 0; }
 .proof-card { display: grid; grid-template-columns: minmax(0,1.1fr) minmax(18rem,.9fr); gap: 3rem; align-items: end; padding-block: clamp(2rem,5vw,4rem); border-radius: 1.25rem; background: #e3f6ec; }
 .proof-card p { max-width: 40rem; margin: 1.25rem 0 1.75rem; }
+.proof-card p a { display: inline-flex; min-height: 2.75rem; align-items: center; color: var(--green-dark); font-weight: 700; }
 .stats { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); margin: 0; }
 .stats div { min-width: 0; padding: 0 1rem; border-left: 1px solid #b9d9ca; }
 .stats dt { color: var(--green-dark); font-size: clamp(2rem,4vw,3.2rem); font-weight: 850; letter-spacing: -.05em; }
