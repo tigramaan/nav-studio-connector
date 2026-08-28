@@ -46,7 +46,7 @@
 - [x] T027 Configure Windows NSIS, Ubuntu DEB and AppImage bundles in `src-tauri/tauri.conf.json`
 - [x] T028 Add Windows and Ubuntu packaging tools in `tools/build-windows.ps1` and `tools/build-ubuntu.sh`
 - [x] T029 Run Windows tests and packaged installer smoke test
-- [ ] T030 Run Ubuntu VM tests, disposable-CA trust test and `.deb` smoke test (core/CLI and release binary passed; privileged desktop package checks remain)
+- [ ] T030 Run Ubuntu VM tests, disposable-CA trust test and `.deb` smoke test (core/CLI, release binary and CI desktop package build passed; privileged install/trust HIL remains)
 - [x] T031 Run secret scan, traceability validation and source-package inspection
 - [x] T032 Update `specs/VERIFICATION_RUNBOOK.md`, catalogs and handover with executed evidence
 - [x] T033 Commit and publish the verified feature branch
