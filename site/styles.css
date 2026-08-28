@@ -134,6 +134,13 @@ footer { border-top: 1px solid var(--line); background: var(--white); }
   .platform-card { grid-template-columns: 1fr; }
 }
 
+@media (min-width: 2560px) {
+  :root {
+    --container-max: 144rem;
+    font-size: clamp(16px, .52vw, 20px);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; animation: none !important; }
