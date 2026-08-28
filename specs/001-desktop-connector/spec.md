@@ -47,6 +47,9 @@ A user can diagnose mDNS, reachability, TLS identity and certificate-store state
 - **REQ-018**: The public source distribution MUST include the MIT License with copyright attribution to `tigramaan`.
 - **REQ-019**: A tagged Windows release MUST be Authenticode-signed and timestamped with an organization-owned code-signing identity; a release workflow MUST fail closed when signing material is absent.
 - **REQ-020**: Signed identity receipt verification MUST use a dedicated pinned Ed25519 trust root with explicit key ID, validity and revocation policy; receipt signing private keys MUST remain outside this repository.
+- **REQ-021**: The project MUST publish a GitHub Pages homepage with stable links to source, releases, the MIT License and the privacy policy.
+- **REQ-022**: The public privacy policy MUST accurately describe local application processing and storage; the project website MUST use no analytics, cookies, advertising, forms or external runtime assets.
+- **REQ-023**: The project website MUST remain readable without horizontal overflow on mobile, tablet, desktop, wide, 4K and tall viewports; interactive targets MUST be at least 44 pixels high and wide when rendered.
 
 ## Security boundary
 

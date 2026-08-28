@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="UMEC Nav Studio Connector securely discovers local Nav Studio instances and verifies robot identity before installing TLS trust.">
+  <meta name="theme-color" content="#071612">
+  <meta property="og:title" content="UMEC Nav Studio Connector">
+  <meta property="og:description" content="Find Nav Studio. Verify the robot. Connect safely.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://tigramaan.github.io/nav-studio-connector/">
+  <link rel="canonical" href="https://tigramaan.github.io/nav-studio-connector/">
+  <link rel="stylesheet" href="styles.css">
+  <title>UMEC Nav Studio Connector</title>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="./" aria-label="UMEC Nav Studio Connector home">
+        <span class="brand-mark" aria-hidden="true">U</span>
+        <span class="brand-text">UMEC Connector</span>
+      </a>
+      <nav aria-label="Primary navigation">
+        <a href="#features">Features</a>
+        <a href="#security">Security</a>
+        <a href="#platforms">Platforms</a>
+        <a href="privacy/">Privacy</a>
+        <a href="https://github.com/tigramaan/nav-studio-connector">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">Local-first · Open source · MIT licensed</p>
+          <h1>Find Nav Studio.<br>Verify the robot.<br><span>Connect safely.</span></h1>
+          <p class="lead">A desktop companion for discovering UMEC Nav Studio on your local network, verifying its TLS identity, and opening it in the browser—without silently trusting an unknown device.</p>
+          <div class="actions">
+            <a class="button button-primary" href="https://github.com/tigramaan/nav-studio-connector/releases">Download releases</a>
+            <a class="button button-secondary" href="https://github.com/tigramaan/nav-studio-connector">View source</a>
+          </div>
+          <ul class="platform-pills" aria-label="Project facts">
+            <li>Windows 10/11</li>
+            <li>Ubuntu 22.04/24.04</li>
+            <li>MIT License</li>
+          </ul>
+        </div>
+
+        <div class="flow-card" aria-label="Connection workflow">
+          <div class="flow-head">
+            <span>Secure connection flow</span>
+            <span class="status-dot">Local</span>
+          </div>
+          <ol class="flow-list">
+            <li><span class="step">01</span><div><strong>Discover</strong><small>Find Nav Studio over DNS-SD/mDNS</small></div></li>
+            <li><span class="step">02</span><div><strong>Inspect</strong><small>Read the presented TLS certificate</small></div></li>
+            <li><span class="step">03</span><div><strong>Authorize</strong><small>Verify a fingerprint or signed receipt</small></div></li>
+            <li><span class="step">04</span><div><strong>Connect</strong><small>Install trust and open Studio</small></div></li>
+          </ol>
+          <p class="flow-note">Unknown identity is never accepted silently.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="features">
+      <div class="container">
+        <p class="eyebrow">One guided workflow</p>
+        <h2>Everything needed between discovery and a trusted browser session.</h2>
+        <div class="card-grid">
+          <article class="feature-card">
+            <span class="card-number">01</span>
+            <h3>Local discovery</h3>
+            <p>Finds compatible Nav Studio services on the LAN with a bounded search. A guarded HTTPS URL remains available as a fallback.</p>
+          </article>
+          <article class="feature-card">
+            <span class="card-number">02</span>
+            <h3>Identity before trust</h3>
+            <p>Shows the full SHA-256 fingerprint and requires explicit authorization. Signed device identity receipts are verified against a pinned public root.</p>
+          </article>
+          <article class="feature-card">
+            <span class="card-number">03</span>
+            <h3>Human and agent ready</h3>
+            <p>Includes a guided desktop interface and a versioned JSON CLI contract for automation agents, with deterministic errors and sanitized diagnostics.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section dark-section" id="security">
+      <div class="container security-grid">
+        <div>
+          <p class="eyebrow mint">Designed around an untrusted LAN</p>
+          <h2>Discovery is a hint.<br>Identity is the decision.</h2>
+          <p class="section-lead">mDNS records, host names, URLs, certificates, and external responses are treated as untrusted input. The connector fails closed at every trust boundary.</p>
+          <a class="text-link" href="https://github.com/tigramaan/nav-studio-connector/blob/001-desktop-connector/docs/architecture.md">Read the architecture →</a>
+        </div>
+        <ul class="security-list">
+          <li><span>✓</span><div><strong>No silent certificate acceptance</strong><small>Trust changes require a verified identity proof or independently confirmed fingerprint.</small></div></li>
+          <li><span>✓</span><div><strong>Least-privilege trust installation</strong><small>Platform operations are explicit, bounded, observable, and reversible.</small></div></li>
+          <li><span>✓</span><div><strong>No private keys in the repository</strong><small>Release and robot identity signing material stays outside the public source tree.</small></div></li>
+          <li><span>✓</span><div><strong>Sanitized diagnostics</strong><small>Logs and receipts exclude tokens, private keys, and arbitrary response bodies.</small></div></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section" id="platforms">
+      <div class="container">
+        <p class="eyebrow">Native desktop packages</p>
+        <h2>One security model on both supported platforms.</h2>
+        <div class="platform-grid">
+          <article class="platform-card">
+            <div class="platform-icon" aria-hidden="true">⊞</div>
+            <div><h3>Windows 10 / 11</h3><p>Per-user installer, guided GUI, automation CLI, and Windows certificate-store integration.</p></div>
+          </article>
+          <article class="platform-card">
+            <div class="platform-icon" aria-hidden="true">U</div>
+            <div><h3>Ubuntu 22.04 / 24.04</h3><p>Native DEB package, guided GUI, automation CLI, and system CA-store integration.</p></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section proof-section">
+      <div class="container proof-card">
+        <div>
+          <p class="eyebrow">Public verification</p>
+          <h2>Built and tested in the open.</h2>
+          <p>Source, requirements, contracts, build workflows, verification evidence, and known limitations are all available in the public repository.</p>
+          <a class="button button-primary" href="https://github.com/tigramaan/nav-studio-connector/actions">View public builds</a>
+        </div>
+        <dl class="stats">
+          <div><dt>2</dt><dd>supported platforms</dd></div>
+          <div><dt>20+</dt><dd>tracked requirements</dd></div>
+          <div><dt>0</dt><dd>private keys in source</dd></div>
+        </dl>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <div><strong>UMEC Nav Studio Connector</strong><p>Secure local discovery and trust bootstrap.</p></div>
+      <nav aria-label="Footer navigation">
+        <a href="https://github.com/tigramaan/nav-studio-connector/releases">Releases</a>
+        <a href="https://github.com/tigramaan/nav-studio-connector">Source</a>
+        <a href="privacy/">Privacy</a>
+        <a href="https://github.com/tigramaan/nav-studio-connector/blob/001-desktop-connector/LICENSE">MIT License</a>
+      </nav>
+    </div>
+  </footer>
+</body>
+</html>

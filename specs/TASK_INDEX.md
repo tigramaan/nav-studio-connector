@@ -13,3 +13,4 @@
 | T-009 | MIT license and source attribution | REQ-018 | Done |
 | T-010 | Windows Authenticode release gate | REQ-019 | Done; production tag awaits external CA-issued PFX |
 | T-011 | Signed identity receipt trust root | REQ-004, REQ-020 | Done |
+| T-012 | Public GitHub Pages website and privacy disclosure | REQ-021–REQ-023 | In progress; production QA pending |

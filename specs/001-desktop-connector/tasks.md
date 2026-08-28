@@ -54,6 +54,9 @@
 - [x] T035 Implement and contract-test signed identity receipt v1 with a dedicated pinned Ed25519 trust root
 - [x] T036 Add fail-closed tagged Windows Authenticode signing and verification workflow
 - [x] T037 Complete isolated Ubuntu `.deb` install/GUI and disposable-CA trust-store HIL
+- [x] T038 Implement the static project homepage and privacy policy in `site/`
+- [x] T039 Add the least-privilege GitHub Pages deployment workflow
+- [ ] T040 Verify the published website across the required production viewport matrix
 
 ## Dependencies
 
