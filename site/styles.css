@@ -27,7 +27,7 @@ a { color: inherit; text-underline-offset: .18em; }
 
 .site-header { position: relative; z-index: 5; border-bottom: 1px solid rgba(16,35,29,.12); background: rgba(246,248,245,.94); }
 .header-inner { display: flex; min-height: 5rem; align-items: center; justify-content: space-between; gap: 2rem; }
-.brand { display: inline-flex; min-height: 2.75rem; align-items: center; gap: .7rem; text-decoration: none; font-weight: 800; letter-spacing: -.02em; }
+.brand { display: inline-flex; min-width: 2.75rem; min-height: 2.75rem; align-items: center; gap: .7rem; text-decoration: none; font-weight: 800; letter-spacing: -.02em; }
 .brand-mark { display: grid; width: 2.4rem; height: 2.4rem; place-items: center; border-radius: .7rem; background: var(--ink); color: var(--mint); }
 .site-header nav, footer nav { display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: .25rem 1rem; }
 .site-header nav a, footer nav a { display: inline-flex; min-height: 2.75rem; align-items: center; padding-inline: .25rem; color: var(--muted); font-size: .92rem; font-weight: 650; text-decoration: none; }
