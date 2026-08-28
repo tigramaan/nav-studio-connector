@@ -1,5 +1,7 @@
 use super::state::save_operation_receipt;
-use crate::domain::{authorize_trust, CallerMode, HealthState, Result, TrustOperation};
+use crate::domain::{
+    authorize_trust, verify_identity_receipt, CallerMode, HealthState, Result, TrustOperation,
+};
 use crate::network::{check_health, inspect_endpoint};
 use crate::platform;
 use chrono::Utc;
@@ -10,14 +12,36 @@ use std::time::Duration;
 pub fn install_endpoint_trust(
     url: &str,
     expected_fingerprint: Option<&str>,
+    identity_receipt: Option<&str>,
+    device_id: Option<&str>,
     human_confirmed: bool,
     caller_mode: CallerMode,
 ) -> Result<TrustOperation> {
     let inspection = inspect_endpoint(url, 8)?;
+    let receipt_verified = match identity_receipt {
+        Some(receipt) => {
+            let device_id = device_id.ok_or_else(|| {
+                crate::domain::ConnectorError::new(
+                    crate::domain::ErrorCode::IdentityReceiptInvalid,
+                    "Identity receipt verification requires a device ID",
+                    false,
+                )
+            })?;
+            verify_identity_receipt(
+                receipt,
+                device_id,
+                &inspection.hostname,
+                &inspection.fingerprint_sha256,
+                Utc::now(),
+            )?;
+            true
+        }
+        None => false,
+    };
     let authorization = authorize_trust(
         &inspection.fingerprint_sha256,
         expected_fingerprint,
-        false,
+        receipt_verified,
         human_confirmed,
         caller_mode,
     )?;

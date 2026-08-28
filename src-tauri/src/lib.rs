@@ -31,11 +31,15 @@ fn inspect(url: String) -> Result<EndpointInspection, ConnectorError> {
 fn install_trust(
     url: String,
     expected_fingerprint: String,
+    identity_receipt: Option<String>,
+    device_id: Option<String>,
     human_confirmed: bool,
 ) -> Result<TrustOperation, ConnectorError> {
     install_endpoint_trust(
         &url,
         Some(&expected_fingerprint),
+        identity_receipt.as_deref(),
+        device_id.as_deref(),
         human_confirmed,
         CallerMode::Human,
     )

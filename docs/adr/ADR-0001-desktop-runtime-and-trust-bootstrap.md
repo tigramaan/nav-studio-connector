@@ -21,4 +21,4 @@ Use Tauri 2 with a Rust core and TypeScript UI. Ship one binary that opens the G
 
 ## Consequences
 
-Each operating system must build its own artifact. Linux requires WebKitGTK and a privilege broker. Windows release reputation requires external code signing. Receipt verification remains fail-closed until the UMEC public verification key and robot-side receipt contract are provisioned.
+Each operating system must build its own artifact. Linux requires WebKitGTK and a privilege broker. Windows release reputation requires an external organization-owned code-signing identity. Receipt verification uses the dedicated pinned key policy and public `receipt-v1` contract described by ADR-0002; private signing material remains external.

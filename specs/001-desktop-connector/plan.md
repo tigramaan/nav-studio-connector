@@ -75,8 +75,9 @@ All REQ rows in `TRACEABILITY_MATRIX.md` have passing automated tests or an exec
 
 - Multicast may be blocked by Wi-Fi/VLAN policy: manual HTTPS fallback is mandatory.
 - Current robots may lack signed receipts: human fingerprint confirmation remains available.
-- Unsigned Windows binaries may show SmartScreen warnings: production release requires organization code signing.
+- Branch Windows binaries may show SmartScreen warnings: tagged release fails unless organization Authenticode signing and timestamp verification succeed.
 - Linux trust installation requires elevation: only the narrow helper step is privileged.
+- Receipt-key loss or misuse affects unattended identity: the private key stays outside source, receipts have bounded lifetime, and the pinned policy supports explicit rotation/revocation.
 
 ## Observability
 

@@ -44,6 +44,9 @@ A user can diagnose mDNS, reachability, TLS identity and certificate-store state
 - **REQ-015**: The connector MUST remove only trust records that it can identify as installed by this connector and MUST show the exact target before removal.
 - **REQ-016**: Discovery, HTTPS inspection and health checks MUST have explicit bounded timeouts and deterministic error classes.
 - **REQ-017**: The UI MUST remain usable at 1280×720, 1440×900, 1920×1080 and 360×800 without horizontal overflow or hidden primary actions.
+- **REQ-018**: The public source distribution MUST include the MIT License with copyright attribution to `tigramaan`.
+- **REQ-019**: A tagged Windows release MUST be Authenticode-signed and timestamped with an organization-owned code-signing identity; a release workflow MUST fail closed when signing material is absent.
+- **REQ-020**: Signed identity receipt verification MUST use a dedicated pinned Ed25519 trust root with explicit key ID, validity and revocation policy; receipt signing private keys MUST remain outside this repository.
 
 ## Security boundary
 
@@ -65,5 +68,6 @@ The local network is untrusted. mDNS records, IP addresses, TXT fields, download
 
 - Nav Studio advertises `_umec-nav._tcp.local.` and serves HTTPS.
 - Existing robots without signed identity receipts use the manual fingerprint confirmation path.
-- Code-signing certificates and a final open-source license are release-governance inputs, not embedded secrets.
+- The project is distributed under the MIT License.
+- Code-signing certificates are release-governance inputs and never embedded in source.
 - Android is explicitly outside this feature.

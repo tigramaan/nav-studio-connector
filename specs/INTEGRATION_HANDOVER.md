@@ -14,13 +14,10 @@ The GUI and JSON CLI call the same application services. Agent mode fails closed
 
 ## Distribution handoff
 
-- Windows release: NSIS installer plus standalone GUI/CLI executable. Production publishing requires Authenticode signing outside the repository.
-- Ubuntu release: `.deb` is primary; AppImage is an optional diagnostic artifact. Trust installation invokes only the fixed `pkexec` helper plan.
+- Windows release: NSIS installer plus standalone GUI/CLI executable. Branch packages may be unsigned; a `v*` tag requires the encrypted `WINDOWS_CERTIFICATE` and `WINDOWS_CERTIFICATE_PASSWORD` secrets and verifies Authenticode plus timestamp before artifact upload.
+- Ubuntu release: `.deb` is primary; AppImage is an optional diagnostic artifact. Trust installation invokes only the fixed `pkexec` helper plan. The package workflow installs the `.deb` on an ephemeral Ubuntu host and verifies GUI startup plus disposable-CA installation/removal.
 - `artifacts/` is a local, gitignored handoff directory. GitHub Actions packages are the reproducible public artifacts.
 
-## Outstanding integration inputs
+## Outstanding external release input
 
-- UMEC public key and final signed receipt wire format.
-- Organization code-signing certificate/process for Windows.
-- Chosen public repository license.
-- Ubuntu privileged hardware-in-the-loop host for disposable CA and `.deb` acceptance.
+- A CA-issued organization code-signing PFX and password must be provisioned as GitHub encrypted secrets before the first production `v*` tag. This repository contains and requires no private Authenticode material.

@@ -1,0 +1,13 @@
+{
+  "schema_version": "1.0",
+  "keys": {
+    "umec-identity-2026": {
+      "algorithm": "ed25519",
+      "usage": "identity_receipt_v1",
+      "public_key_pem": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAfyjDhqDIVCNpYbLGYwcx+gZh2NNdrgqRTGJh5WzZziM=\n-----END PUBLIC KEY-----\n",
+      "not_before": "2026-08-28T00:00:00Z",
+      "not_after": "2031-08-28T00:00:00Z",
+      "revoked": false
+    }
+  }
+}

@@ -12,7 +12,7 @@ Recognized TXT keys:
 - `api_version`: Studio API contract version.
 - `path`: Studio path beginning with `/`.
 - `url`: absolute `https://` Studio URL whose host matches the record hostname or resolved address.
-- `identity`: future `receipt-v1` marker when a signed receipt is available.
-- `receipt`: future bounded signed identity receipt; ignored until a trusted public verification key is configured.
+- `identity`: exact `receipt-v1` marker when a signed receipt is available.
+- `receipt`: bounded signed identity receipt matching `identity-receipt-v1.md`; verified only against an active pinned trust root.
 
 Unknown keys are ignored. Invalid records are returned only as sanitized diagnostic errors and never as selectable robots.

@@ -1,8 +1,10 @@
 use crate::domain::{
-    normalize_fingerprint, ConnectorError, ConnectorStatus, ErrorCode, Result, TrustOperation,
+    active_identity_key_ids, normalize_fingerprint, ConnectorError, ConnectorStatus, ErrorCode,
+    Result, TrustOperation,
 };
 use crate::network::DISCOVERY_SERVICE;
 use crate::platform;
+use chrono::Utc;
 use std::fs;
 use std::path::PathBuf;
 
@@ -100,6 +102,6 @@ pub fn connector_status() -> Result<ConnectorStatus> {
         platform: platform::platform_name().to_string(),
         discovery_service: DISCOVERY_SERVICE.to_string(),
         state_directory: state_directory()?.display().to_string(),
-        receipt_verification_configured: false,
+        receipt_verification_configured: !active_identity_key_ids(Utc::now()).is_empty(),
     })
 }

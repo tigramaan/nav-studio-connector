@@ -95,6 +95,13 @@ fn robot_from_service(info: &ServiceInfo) -> Result<DiscoveredRobot> {
     };
     let studio_url = format!("https://{hostname}{port_suffix}{path}");
     let short_id: String = robot_id.chars().take(8).collect();
+    let identity_receipt = properties
+        .get_property_val_str("identity")
+        .filter(|value| *value == "receipt-v1")
+        .and_then(|_| properties.get_property_val_str("receipt"))
+        .map(str::trim)
+        .filter(|value| !value.is_empty() && value.len() <= 240 && value.is_ascii())
+        .map(str::to_string);
 
     Ok(DiscoveredRobot {
         robot_id,
@@ -107,7 +114,12 @@ fn robot_from_service(info: &ServiceInfo) -> Result<DiscoveredRobot> {
         model: bounded_property(properties.get_property_val_str("model")),
         api_version: bounded_property(properties.get_property_val_str("api_version")),
         schema: bounded_property(properties.get_property_val_str("schema")),
-        identity_method: "tls_fingerprint".to_string(),
+        identity_method: if identity_receipt.is_some() {
+            "signed_receipt".to_string()
+        } else {
+            "tls_fingerprint".to_string()
+        },
+        identity_receipt,
         last_seen_at: Utc::now(),
     })
 }

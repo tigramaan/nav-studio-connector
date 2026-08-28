@@ -23,6 +23,7 @@ base64 = "0.22"
 chrono = { version = "0.4", features = ["serde"] }
 clap = { version = "4.5", features = ["derive"] }
 dirs = "6"
+ed25519-dalek = { version = "2.2", features = ["pkcs8", "pem"] }
 hex = "0.4"
 mdns-sd = "0.13"
 native-tls = "0.2"
@@ -38,8 +39,12 @@ thiserror = "2"
 url = "2"
 x509-parser = "0.17"
 
+[target.'cfg(unix)'.dependencies]
+libc = "0.2"
+
 [dev-dependencies]
 jsonschema = "0.30"
+pkcs8 = { version = "0.10", features = ["pem"] }
 
 [profile.release]
 codegen-units = 1

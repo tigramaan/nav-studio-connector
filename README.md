@@ -24,7 +24,7 @@ nav-studio-connector discover --timeout 5 --json
 nav-studio-connector inspect --url https://agibot-pc2.local:8780/ --json
 ```
 
-An agent must not call `trust install` unless it already has an independently trusted expected fingerprint.
+An agent may call `trust install` only with an independently trusted expected fingerprint or a valid `receipt-v1` issued by an active pinned UMEC identity key. The active key ID is `umec-identity-2026`; the signing private key is not part of this repository.
 
 ## Development
 
@@ -35,8 +35,12 @@ cargo test --manifest-path src-tauri/Cargo.toml
 npm run tauri dev
 ```
 
-Build packages with `tools/build-windows.ps1` on Windows or `tools/build-ubuntu.sh` on Ubuntu. See `specs/VERIFICATION_RUNBOOK.md` for platform prerequisites and acceptance procedures.
+Build packages with `tools/build-windows.ps1` on Windows or `tools/build-ubuntu.sh` on Ubuntu. See `specs/VERIFICATION_RUNBOOK.md` for platform prerequisites, signing-secret setup and acceptance procedures.
 
 ## Project status
 
-This is the initial public feature branch. Production release additionally requires an organization-owned Windows code-signing certificate and a separately approved repository license. Private keys must never be committed.
+Branch builds are intentionally allowed to remain unsigned. Every `v*` tag fails closed unless GitHub receives an organization-owned Authenticode PFX and password as encrypted secrets; both the executable and NSIS installer are then required to have a trusted SHA-256 signature and timestamp. Private keys must never be committed.
+
+## License
+
+Distributed under the [MIT License](LICENSE). Copyright (c) 2026 tigramaan.

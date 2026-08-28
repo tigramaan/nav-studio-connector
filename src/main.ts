@@ -10,6 +10,7 @@ type Robot = {
   studio_url: string;
   model?: string;
   api_version?: string;
+  identity_receipt?: string;
 };
 
 type Inspection = {
@@ -216,7 +217,13 @@ async function installTrust(expectedFingerprint: string): Promise<void> {
   state.phase = "installing";
   render();
   try {
-    await command("install_trust", { url: state.inspection.studio_url, expectedFingerprint, humanConfirmed: true });
+    await command("install_trust", {
+      url: state.inspection.studio_url,
+      expectedFingerprint,
+      identityReceipt: state.selected?.identity_receipt ?? null,
+      deviceId: state.selected?.robot_id ?? null,
+      humanConfirmed: true
+    });
     state.phase = "ready";
   } catch (error) {
     fail(error);

@@ -31,8 +31,7 @@ pub fn install_certificate(inspection: &EndpointInspection) -> Result<String> {
     })?;
     let script =
         "set -eu; /usr/bin/install -m 0644 -- \"$1\" \"$2\"; /usr/sbin/update-ca-certificates";
-    let output = Command::new("pkexec")
-        .args(["/bin/sh", "-c", script, "nav-studio-connector"])
+    let output = privileged_command(script)
         .arg(certificate_file.path())
         .arg(&target)
         .output()
@@ -67,14 +66,8 @@ pub fn remove_certificate(
         ));
     }
     let script = "set -eu; /usr/bin/rm -f -- \"$1\"; /usr/sbin/update-ca-certificates";
-    let output = Command::new("pkexec")
-        .args([
-            "/bin/sh",
-            "-c",
-            script,
-            "nav-studio-connector",
-            trust_target,
-        ])
+    let output = privileged_command(script)
+        .arg(trust_target)
         .output()
         .map_err(|error| {
             ConnectorError::new(
@@ -88,6 +81,21 @@ pub fn remove_certificate(
         return Err(classify_privileged_failure(&output.stderr));
     }
     Ok(())
+}
+
+fn privileged_command(script: &str) -> Command {
+    // Root is used only by isolated package/HIL environments. Desktop users always cross the
+    // explicit pkexec boundary; arguments are appended separately and never interpolated.
+    let is_root = unsafe { libc::geteuid() == 0 };
+    let mut command = if is_root {
+        Command::new("/bin/sh")
+    } else {
+        let mut command = Command::new("pkexec");
+        command.arg("/bin/sh");
+        command
+    };
+    command.args(["-c", script, "nav-studio-connector"]);
+    command
 }
 
 fn classify_privileged_failure(stderr: &[u8]) -> ConnectorError {

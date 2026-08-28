@@ -10,6 +10,7 @@
     "test:core": "cargo test --manifest-path src-tauri/Cargo.toml",
     "tauri": "tauri",
     "bundle:windows": "powershell -NoProfile -ExecutionPolicy Bypass -File tools/build-windows.ps1",
+    "validate:license": "node tools/validate-license.mjs",
     "validate:traceability": "node tools/validate-traceability.mjs",
     "qa:visual": "node tools/visual-qa.mjs"
   },

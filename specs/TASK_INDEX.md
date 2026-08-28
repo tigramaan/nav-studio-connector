@@ -10,3 +10,6 @@
 | T-006 | Guided responsive GUI | REQ-009, REQ-011, REQ-017 | Done |
 | T-007 | Native packaging | REQ-012, REQ-013 | Windows verified; Ubuntu CI packages passed |
 | T-008 | Automated and platform verification | REQ-001–REQ-017 | Partial; remaining Ubuntu privileged HIL |
+| T-009 | MIT license and source attribution | REQ-018 | Done |
+| T-010 | Windows Authenticode release gate | REQ-019 | Done; production tag awaits external CA-issued PFX |
+| T-011 | Signed identity receipt trust root | REQ-004, REQ-020 | Done |

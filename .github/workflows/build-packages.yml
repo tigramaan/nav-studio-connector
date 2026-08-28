@@ -24,7 +24,80 @@ jobs:
       - run: npm ci --no-audit --no-fund
       - run: npm run build
       - run: cargo test --manifest-path src-tauri/Cargo.toml
-      - run: npm run tauri -- build --bundles nsis
+      - name: Import production Authenticode certificate
+        if: startsWith(github.ref, 'refs/tags/')
+        shell: pwsh
+        env:
+          WINDOWS_CERTIFICATE: ${{ secrets.WINDOWS_CERTIFICATE }}
+          WINDOWS_CERTIFICATE_PASSWORD: ${{ secrets.WINDOWS_CERTIFICATE_PASSWORD }}
+        run: |
+          if ([string]::IsNullOrWhiteSpace($env:WINDOWS_CERTIFICATE) -or [string]::IsNullOrWhiteSpace($env:WINDOWS_CERTIFICATE_PASSWORD)) {
+            throw 'Tagged Windows releases require WINDOWS_CERTIFICATE and WINDOWS_CERTIFICATE_PASSWORD secrets'
+          }
+          $pfxPath = Join-Path $env:RUNNER_TEMP 'nav-studio-connector-authenticode.pfx'
+          "WINDOWS_PFX_PATH=$pfxPath" | Out-File -FilePath $env:GITHUB_ENV -Append -Encoding utf8
+          try {
+            [System.IO.File]::WriteAllBytes($pfxPath, [Convert]::FromBase64String($env:WINDOWS_CERTIFICATE))
+          }
+          catch {
+            throw 'WINDOWS_CERTIFICATE must be a valid base64-encoded PFX'
+          }
+          $password = ConvertTo-SecureString -String $env:WINDOWS_CERTIFICATE_PASSWORD -AsPlainText -Force
+          $importedCertificates = @(Import-PfxCertificate -FilePath $pfxPath -CertStoreLocation Cert:\CurrentUser\My -Password $password)
+          "WINDOWS_IMPORTED_THUMBPRINTS=$(($importedCertificates.Thumbprint -join ','))" | Out-File -FilePath $env:GITHUB_ENV -Append -Encoding utf8
+          $certificate = $importedCertificates | Where-Object {
+            $_.HasPrivateKey -and $_.EnhancedKeyUsageList.ObjectId -contains '1.3.6.1.5.5.7.3.3'
+          } | Select-Object -First 1
+          if (-not $certificate) {
+            throw 'Imported PFX is not a code-signing certificate with a private key'
+          }
+          $configPath = Join-Path $env:RUNNER_TEMP 'tauri-authenticode.json'
+          @{
+            bundle = @{
+              windows = @{
+                certificateThumbprint = $certificate.Thumbprint
+                digestAlgorithm = 'sha256'
+                timestampUrl = 'http://timestamp.digicert.com'
+              }
+            }
+          } | ConvertTo-Json -Depth 5 | Set-Content -LiteralPath $configPath -Encoding utf8
+          "TAURI_AUTHENTICODE_CONFIG=$configPath" | Out-File -FilePath $env:GITHUB_ENV -Append -Encoding utf8
+          "WINDOWS_AUTHENTICODE_CONFIG_PATH=$configPath" | Out-File -FilePath $env:GITHUB_ENV -Append -Encoding utf8
+      - name: Build Windows package
+        shell: pwsh
+        run: |
+          if ($env:GITHUB_REF -like 'refs/tags/*') {
+            npm run tauri -- build --bundles nsis --config $env:TAURI_AUTHENTICODE_CONFIG
+          }
+          else {
+            npm run tauri -- build --bundles nsis
+          }
+      - name: Verify tagged Windows signatures
+        if: startsWith(github.ref, 'refs/tags/')
+        shell: pwsh
+        run: |
+          $paths = @(
+            'src-tauri/target/release/nav-studio-connector.exe'
+            (Get-ChildItem -LiteralPath 'src-tauri/target/release/bundle/nsis' -Filter '*.exe' | Select-Object -First 1 -ExpandProperty FullName)
+          )
+          ./tools/verify-windows-signature.ps1 -InputPath $paths -RequireTimestamp
+      - name: Remove imported signing material
+        if: always() && startsWith(github.ref, 'refs/tags/')
+        shell: pwsh
+        run: |
+          if ($env:WINDOWS_IMPORTED_THUMBPRINTS) {
+            foreach ($thumbprint in $env:WINDOWS_IMPORTED_THUMBPRINTS.Split(',')) {
+              if ($thumbprint -match '^[A-Fa-f0-9]{40}$') {
+                Remove-Item -LiteralPath "Cert:\CurrentUser\My\$thumbprint" -Force -ErrorAction SilentlyContinue
+              }
+            }
+          }
+          if ($env:WINDOWS_PFX_PATH) {
+            Remove-Item -LiteralPath $env:WINDOWS_PFX_PATH -Force -ErrorAction SilentlyContinue
+          }
+          if ($env:WINDOWS_AUTHENTICODE_CONFIG_PATH) {
+            Remove-Item -LiteralPath $env:WINDOWS_AUTHENTICODE_CONFIG_PATH -Force -ErrorAction SilentlyContinue
+          }
       - uses: actions/upload-artifact@v4
         with:
           name: nav-studio-connector-windows-x64
@@ -43,11 +116,16 @@ jobs:
         with:
           components: rustfmt
       - name: Install Tauri build dependencies
-        run: sudo apt-get update && sudo apt-get install -y libwebkit2gtk-4.1-dev libappindicator3-dev librsvg2-dev patchelf libssl-dev
+        run: sudo apt-get update && sudo apt-get install -y libwebkit2gtk-4.1-dev libappindicator3-dev librsvg2-dev patchelf libssl-dev xvfb dbus-x11 xauth openssl ca-certificates curl
       - run: npm ci --no-audit --no-fund
       - run: npm run build
       - run: cargo test --manifest-path src-tauri/Cargo.toml
       - run: npm run tauri -- build --bundles deb,appimage
+      - name: Verify installed Ubuntu package and CA lifecycle
+        run: |
+          deb_path="$(find src-tauri/target/release/bundle/deb -maxdepth 1 -name '*.deb' -print -quit)"
+          appimage_path="$(find src-tauri/target/release/bundle/appimage -maxdepth 1 -name '*.AppImage' -print -quit)"
+          sudo env CONNECTOR_HIL_ALLOW_EPHEMERAL_HOST=1 bash tools/test-ubuntu-package-hil.sh --deb "$deb_path" --appimage "$appimage_path"
       - uses: actions/upload-artifact@v4
         with:
           name: nav-studio-connector-ubuntu-x64

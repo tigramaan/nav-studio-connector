@@ -31,5 +31,11 @@ jobs:
       - run: npm run build
       - run: cargo fmt --manifest-path src-tauri/Cargo.toml -- --check
       - run: cargo test --manifest-path src-tauri/Cargo.toml
+      - run: npm run validate:license
       - run: npm run validate:traceability
       - run: node tools/scan-secrets.mjs
+      - name: Verify offline receipt signer
+        if: runner.os == 'Linux'
+        run: |
+          python3 -m pip install -r tools/requirements-receipt.txt
+          python3 tools/test-sign-identity-receipt.py

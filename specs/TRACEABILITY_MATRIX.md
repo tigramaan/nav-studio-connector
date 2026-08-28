@@ -11,3 +11,6 @@
 | REQ-012 | T-007 | installer launch/smoke test on both platforms; V-007 |
 | REQ-013, REQ-014 | T-002, T-005, T-007 | secret scan and diagnostic snapshot tests; V-008 |
 | REQ-016 | T-002, T-003 | timeout/error classification tests; V-009 |
+| REQ-018 | T-009 | license/source-package inspection; V-010 |
+| REQ-019 | T-010 | Authenticode build gate and signature verification; V-011 |
+| REQ-020 | T-011 | signed, expired, mismatched, unknown and revoked receipt tests; V-012 |

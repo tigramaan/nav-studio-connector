@@ -50,6 +50,10 @@
 - [x] T031 Run secret scan, traceability validation and source-package inspection
 - [x] T032 Update `specs/VERIFICATION_RUNBOOK.md`, catalogs and handover with executed evidence
 - [x] T033 Commit and publish the verified feature branch
+- [x] T034 Add the MIT License and public attribution
+- [x] T035 Implement and contract-test signed identity receipt v1 with a dedicated pinned Ed25519 trust root
+- [x] T036 Add fail-closed tagged Windows Authenticode signing and verification workflow
+- [ ] T037 Complete isolated Ubuntu `.deb` install/GUI and disposable-CA trust-store HIL
 
 ## Dependencies
 

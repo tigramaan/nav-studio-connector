@@ -9,6 +9,8 @@ target/
 Thumbs.db
 *.tmp
 *.swp
+__pycache__/
+*.py[cod]
 .vscode/
 .idea/
 artifacts/

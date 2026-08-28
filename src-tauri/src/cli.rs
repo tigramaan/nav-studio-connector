@@ -81,8 +81,12 @@ enum TrustAction {
     Install {
         #[arg(long)]
         url: String,
-        #[arg(long)]
-        expected_fingerprint: String,
+        #[arg(long, required_unless_present = "receipt", conflicts_with = "receipt")]
+        expected_fingerprint: Option<String>,
+        #[arg(long, requires = "device_id", conflicts_with = "expected_fingerprint")]
+        receipt: Option<String>,
+        #[arg(long, requires = "receipt")]
+        device_id: Option<String>,
         #[arg(long)]
         json: bool,
     },
@@ -169,9 +173,11 @@ fn execute(command: Command) -> (String, Result<Value>) {
                 "commands": [
                     "agent describe --json", "discover --timeout 5 --json", "inspect --url <https-url> --json",
                     "trust plan --url <https-url> --json", "trust install --url <https-url> --expected-fingerprint <sha256> --json",
+                    "trust install --url <https-url> --receipt <receipt-v1> --device-id <id> --json",
                     "trust remove --fingerprint <sha256> --json", "status --json", "open --url <https-url> --json",
                     "diagnose --url <https-url> --json"
                 ],
+                "active_identity_keys": crate::domain::active_identity_key_ids(Utc::now()),
                 "trust_policy": "Never accept an unknown identity. Supply an independently verified SHA-256 fingerprint or a valid signed identity receipt."
             })),
         ),
@@ -200,12 +206,21 @@ fn execute(command: Command) -> (String, Result<Value>) {
                 TrustAction::Install {
                     url,
                     expected_fingerprint,
+                    receipt,
+                    device_id,
                     ..
                 },
         } => (
             "trust.install".into(),
-            install_endpoint_trust(&url, Some(&expected_fingerprint), false, CallerMode::Agent)
-                .and_then(to_value),
+            install_endpoint_trust(
+                &url,
+                expected_fingerprint.as_deref(),
+                receipt.as_deref(),
+                device_id.as_deref(),
+                false,
+                CallerMode::Agent,
+            )
+            .and_then(to_value),
         ),
         Command::Trust {
             action: TrustAction::Remove { fingerprint, .. },

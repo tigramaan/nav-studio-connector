@@ -16,6 +16,7 @@ pub struct DiscoveredRobot {
     pub api_version: Option<String>,
     pub schema: Option<String>,
     pub identity_method: String,
+    pub identity_receipt: Option<String>,
     pub last_seen_at: DateTime<Utc>,
 }
 
