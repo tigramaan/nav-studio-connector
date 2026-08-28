@@ -49,7 +49,7 @@
 - [ ] T030 Run Ubuntu VM tests, disposable-CA trust test and `.deb` smoke test (core/CLI and release binary passed; privileged desktop package checks remain)
 - [x] T031 Run secret scan, traceability validation and source-package inspection
 - [x] T032 Update `specs/VERIFICATION_RUNBOOK.md`, catalogs and handover with executed evidence
-- [ ] T033 Commit and publish the verified feature branch
+- [x] T033 Commit and publish the verified feature branch
 
 ## Dependencies
 
