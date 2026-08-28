@@ -102,7 +102,7 @@ footer { border-top: 1px solid var(--line); background: var(--white); }
 .legal-date { margin: 1rem 0 2.5rem; color: var(--muted); font-size: .88rem; }
 .legal-document h2 { max-width: none; margin: 3rem 0 .75rem; font-size: clamp(1.35rem,3vw,1.8rem); line-height: 1.2; letter-spacing: -.025em; }
 .legal-document p:not(.eyebrow):not(.lead):not(.legal-date) { color: #44564f; }
-.legal-document a { color: var(--green-dark); font-weight: 700; }
+.legal-document a { display: inline-flex; min-height: 2.75rem; align-items: center; color: var(--green-dark); font-weight: 700; }
 
 :focus-visible { outline: 3px solid #ffb62e; outline-offset: 3px; }
 @media (max-width: 64rem) {
