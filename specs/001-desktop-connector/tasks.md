@@ -58,6 +58,7 @@
 - [x] T039 Add the least-privilege GitHub Pages deployment workflow
 - [x] T040 Verify the published website across the required production viewport matrix
 - [x] T041 Publish and contract-check the SignPath-compatible code signing policy
+- [x] T042 Publish and download-verify the unsigned bootstrap prerelease for SignPath review
 
 ## Dependencies
 

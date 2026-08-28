@@ -19,6 +19,7 @@ The GUI and JSON CLI call the same application services. Agent mode fails closed
 - `artifacts/` is a local, gitignored handoff directory. GitHub Actions packages are the reproducible public artifacts.
 - Public project information is served from `https://tigramaan.github.io/nav-studio-connector/`; the versioned privacy disclosure is available at `/privacy/`, and downloads remain on GitHub Releases.
 - Release authorization and SignPath Foundation responsibilities are published at `https://tigramaan.github.io/nav-studio-connector/code-signing/`.
+- The initial reviewable package forms are published as prerelease `0.1.0-unsigned.1`; its Windows artifacts are intentionally unsigned and must be replaced by verified Authenticode outputs after SignPath onboarding.
 
 ## Outstanding external release input
 

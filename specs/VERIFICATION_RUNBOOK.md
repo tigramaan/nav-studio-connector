@@ -86,6 +86,7 @@ npm run qa:visual -- "https://tigramaan.github.io/nav-studio-connector/code-sign
 | V-013 public website/privacy | PASS | GitHub Pages deployment `33168784714` published the static homepage and privacy policy. `validate-site.mjs` verified stable public links and found 0 runtime scripts, analytics or forms. |
 | V-014 production website layout | PASS | Both published pages passed Edge at 320×568, 390×844, 768×1024, 1024×768, 1440×900, 1920×1080, 2560×1440, 3840×2160 and 1440×1600. Horizontal overflow, undersized targets, console errors and failed requests: 0. Representative mobile, tablet, desktop, 4K and full privacy screenshots were visually inspected. |
 | V-015 code signing policy | PASS | `validate-site.mjs` verified the homepage policy link, provider attribution, named roles, manual approval and privacy statement. The published policy passed the complete viewport matrix and visual review; final homepage deployment `33169197537` also passed after the policy-link target was enlarged. |
+| V-016 public bootstrap prerelease | PASS | Prerelease `0.1.0-unsigned.1` publishes the Windows installer/standalone executable, Ubuntu DEB/AppImage/standalone binary, source ZIP and checksum manifest. Every asset was downloaded again from its public URL and all six SHA-256 values plus the manifest content matched. Windows files are explicitly identified as unsigned. |
 
 ## Expected artifacts
 
@@ -102,6 +103,7 @@ npm run qa:visual -- "https://tigramaan.github.io/nav-studio-connector/code-sign
 - Ubuntu VM CLI SHA-256: `FE2373B06971AC0BF026DD5E4DE1A5496D0B544068B36EBC0ED21C31121464C4`.
 - GitHub Pages run `33168784714`: production deployment completed successfully at commit `0d7bccd`; homepage `https://tigramaan.github.io/nav-studio-connector/`, privacy policy `https://tigramaan.github.io/nav-studio-connector/privacy/`.
 - GitHub Pages run `33169197537`: final homepage/signing-policy deployment completed successfully at commit `c9e2a66`; signing policy `https://tigramaan.github.io/nav-studio-connector/code-signing/`.
+- GitHub prerelease `0.1.0-unsigned.1`: `https://github.com/tigramaan/nav-studio-connector/releases/tag/0.1.0-unsigned.1`; 7 attached assets, all public downloads verified.
 
 ## Acceptance checklist
 
@@ -118,6 +120,7 @@ npm run qa:visual -- "https://tigramaan.github.io/nav-studio-connector/code-sign
 - [x] Required responsive viewport screenshots pass.
 - [x] Ubuntu system trust mutation, strict HTTPS, cleanup and `.deb`/GUI/AppImage smoke pass on an ephemeral privileged host.
 - [x] Public website and privacy policy are deployed and pass the complete production viewport matrix.
+- [x] Unsigned bootstrap prerelease is public, accurately labeled and hash-verified after download.
 - [ ] Windows release is Authenticode-signed with an organization-owned key.
 
 ## Known limitations

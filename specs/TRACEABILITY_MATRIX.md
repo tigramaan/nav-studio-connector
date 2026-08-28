@@ -8,7 +8,7 @@
 | REQ-009 | T-003, T-004, T-006 | post-install health integration test; V-004 |
 | REQ-010 | T-005 | JSON schema contract suite; V-005 |
 | REQ-011, REQ-017 | T-006 | UI E2E and viewport screenshots; V-006 |
-| REQ-012 | T-007 | installer launch/smoke test on both platforms; V-007 |
+| REQ-012 | T-007 | installer launch/smoke test on both platforms and published-asset hash verification; V-007, V-016 |
 | REQ-013, REQ-014 | T-002, T-005, T-007 | secret scan and diagnostic snapshot tests; V-008 |
 | REQ-016 | T-002, T-003 | timeout/error classification tests; V-009 |
 | REQ-018 | T-009 | license/source-package inspection; V-010 |
