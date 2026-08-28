@@ -1,0 +1,12 @@
+# Task index
+
+| Task | Scope | Requirements | Status |
+|---|---|---|---|
+| T-001 | Specification, ADR and contracts | REQ-001–REQ-017 | Done |
+| T-002 | Domain validation and identity policy | REQ-003–REQ-006, REQ-013, REQ-016 | Done |
+| T-003 | mDNS/manual discovery and TLS inspection | REQ-001–REQ-003, REQ-016 | Done |
+| T-004 | Windows and Ubuntu trust adapters | REQ-007–REQ-009, REQ-015 | Done; Ubuntu privileged HIL pending |
+| T-005 | Agent JSON CLI | REQ-006, REQ-010, REQ-014 | Done |
+| T-006 | Guided responsive GUI | REQ-009, REQ-011, REQ-017 | Done |
+| T-007 | Native packaging | REQ-012, REQ-013 | Windows verified; Ubuntu CI configured |
+| T-008 | Automated and platform verification | REQ-001–REQ-017 | Partial; remaining Ubuntu privileged HIL |
