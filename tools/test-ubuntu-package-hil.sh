@@ -23,6 +23,10 @@ if [[ -n "$appimage_path" && ! -f "$appimage_path" ]]; then
   echo "--appimage must reference an existing package" >&2
   exit 2
 fi
+deb_path="$(readlink -f -- "$deb_path")"
+if [[ -n "$appimage_path" ]]; then
+  appimage_path="$(readlink -f -- "$appimage_path")"
+fi
 if ! systemd-detect-virt --container >/dev/null 2>&1 && [[ ${CONNECTOR_HIL_ALLOW_EPHEMERAL_HOST:-0} != 1 ]]; then
   echo "Refusing system trust mutation outside a container or explicitly authorized ephemeral host" >&2
   exit 5
